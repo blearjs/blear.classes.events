@@ -1,7 +1,7 @@
 {
   "name": "blear.classes.events",
   "version": "1.0.0",
-  "description": "类的继承",
+  "description": "事件的派发类",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
     "test": "node ./node_modules/.bin/karma start --single-run --browsers PhantomJS --reporters progress"
@@ -26,13 +26,13 @@
     "url": "http://ydr.me"
   },
   "contributors": [],
-  "homepage": "https://github.com/blearjs/blear.classes.class",
+  "homepage": "https://github.com/blearjs/blear.classes.events",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blearjs/blear.classes.class"
+    "url": "https://github.com/blearjs/blear.classes.events"
   },
   "bugs": {
-    "url": "https://github.com/blearjs/blear.classes.class/issues"
+    "url": "https://github.com/blearjs/blear.classes.events/issues"
   },
   "dependencies": {},
   "peerDependencies": {

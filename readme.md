@@ -1,9 +1,9 @@
-# blear.classes.class
+# blear.classes.events
 
 [![Build Status][travis-img]][travis-url] 
 
-[travis-img]: https://travis-ci.org/blearjs/blear.classes.class.svg?branch=master
-[travis-url]: https://travis-ci.org/blearjs/blear.classes.class
+[travis-img]: https://travis-ci.org/blearjs/blear.classes.events.svg?branch=master
+[travis-url]: https://travis-ci.org/blearjs/blear.classes.events
 
 
 ## 静态方法
