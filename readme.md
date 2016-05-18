@@ -5,77 +5,42 @@
 [travis-img]: https://travis-ci.org/blearjs/blear.classes.events.svg?branch=master
 [travis-url]: https://travis-ci.org/blearjs/blear.classes.events
 
-
-## 静态方法
-
-### `alias(aliasName, originalName)`
-原型方法的别名。
+## `#emit(eventName, [arg, ...])`
+发送事件。多个事件名，使用空格分开。如果接收事件有返回 false，则返回值为 false。
 ```
-var AA = Class.extend({
-    constructor: function () {},
-    a: function () {}
+var events = new Events();
+
+var preventDefault = events.emit('myEvent', 1, 2, 3) === false;
+```
+
+## `#on(eventName, function)`
+监听事件。多个事件名，使用空格分开。
+
+```
+events.on('myEvents', function (a, b, c) {
+    // a === 1
+    // b === 2
+    // c === 3
+    
+    return false;
 });
-
-AA.alias('a2', 'a');
-// AA.prototype.a2 === AA.prototype.a
 ```
 
-### `sole()`
-生成唯一的随机值，用于原型受保护的方法、属性，防止继承类将其覆盖。
+
+## `#un([eventName], [function])`
+取消事件监听。如果 function 为空，则取消所有该事件监听。如果都为空，则取消所有事件。
 ```
-var AA = Class.extend({
-    constructor: function () {
-        this[_protectedProperty] = 123;
-        this[_protectedMethod] = function () {};
-    },
-});
-var _protectedProperty = AA.sole();
-var _protectedMethod = AA.sole();
+events.un('myEvent', fn1);
+events.un('myEvent');
+events.un();
 ```
 
-### `extend(prototype)` 
-基于当前类扩展新的子类。
-```
-var AA = Class.extend({
-    constructor: function () {}
-});
 
-var BB = AA.extend({
-    constructor: function () {}
-});
 
-// BB 继承了 AA
-```
-
-### `Super()`
-如果在 `extend` 之后还用到了实例的 `Super` 方法，则需要手动再执行一次。
+## `#once(eventName, function)`
+只监听一次。
 
 ```
-var AA = Class.extend({
-    constructor: function () {},
-    a: function () {}
-});
-
-var BB = AA.extend({
-    constructor: function () {
-        // 调用父类构造函数
-        this.Super();
-    }
-});
-
-BB.protyotype.b = function () {
-    // 在 extend 之后调用 Super
-    this.Super.a();
-    // ...
-};
-
-BB.Super();
+events.once('myEvent', fn1);
 ```
 
-## 实例方法
-
-### `this.Super([arg, ...])`
-**只能同步调用**，执行父类的构造函数。
-
-### `this.Super.someMethod([arg, ...])`
-**只能同步调用**，执行父类的原型方法。
