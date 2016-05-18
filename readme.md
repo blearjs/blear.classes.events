@@ -5,6 +5,7 @@
 [travis-img]: https://travis-ci.org/blearjs/blear.classes.events.svg?branch=master
 [travis-url]: https://travis-ci.org/blearjs/blear.classes.events
 
+
 ## `#emit(eventName, [arg, ...])`
 发送事件。多个事件名，使用空格分开。如果接收事件有返回 false，则返回值为 false。
 ```
@@ -43,4 +44,3 @@ events.un();
 ```
 events.once('myEvent', fn1);
 ```
-
