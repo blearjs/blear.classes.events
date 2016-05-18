@@ -6,7 +6,7 @@
 
 'use strict';
 
-var Class =  require('blear.classes.events');
+var Class =  require('blear.classes.class');
 var typeis = require('blear.utils.typeis');
 var array =  require('blear.utils.array');
 var object = require('blear.utils.object');
