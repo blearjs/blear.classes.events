@@ -1,9 +1,17 @@
-# blear.classes.events
+# blear.classes.events 事件的监听与派发类
 
-[![Build Status][travis-img]][travis-url] 
+[![npm module][npm-img]][npm-url]
+[![build status][travis-img]][travis-url]
+[![coverage][coveralls-img]][coveralls-url]
 
-[travis-img]: https://travis-ci.org/blearjs/blear.classes.events.svg?branch=master
+[travis-img]: https://img.shields.io/travis/blearjs/blear.classes.events/master.svg?maxAge=2592000&style=flat-square
 [travis-url]: https://travis-ci.org/blearjs/blear.classes.events
+
+[npm-img]: https://img.shields.io/npm/v/blear.classes.events.svg?maxAge=2592000&style=flat-square
+[npm-url]: https://www.npmjs.com/package/blear.classes.events
+
+[coveralls-img]: https://img.shields.io/coveralls/blearjs/blear.classes.events/master.svg?maxAge=2592000&style=flat-square
+[coveralls-url]: https://coveralls.io/github/blearjs/blear.classes.events?branch=master
 
 
 ## `#emit(eventName, [arg, ...])`
