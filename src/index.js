@@ -32,7 +32,7 @@ var Events = Class.extend({
     constructor: function () {
         var the = this;
 
-        the.Super(the);
+        Events.parent(the);
         the[_listeners] = {};
     },
 
@@ -207,18 +207,11 @@ pro[_emitEvent] = function (ev, args) {
         return emitResult;
     }
 
-    //for(var index = 0; index < listeners.length; index++) {
-    //    var listener = listeners[index];
-    //
-    //    // once listener
-    //    if(listener[ONCE_TIME_LISTENER_KEY]){
-    //        listeners.splice(index, 1);
-    //    }
-    //}
     array.each(listeners, function (index, listener) {
-        if (!listener) {
-            return;
-        }
+        // 这种情况应该不会发生
+        // if (!listener) {
+        //     return;
+        // }
 
         // once listener
         if (listener[ONCE_TIME_LISTENER_KEY]) {

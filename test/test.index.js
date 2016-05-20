@@ -97,6 +97,71 @@ describe('测试文件', function () {
         }, 100);
     });
 
+    it('return false', function (done) {
+        var ee = new Events();
+        var times = 0;
+
+        ee.on('a', function () {
+            times++;
+            return false;
+        });
+
+        ee.on('a', function () {
+            times++;
+        });
+
+        var ret = ee.emit('a');
+
+        setTimeout(function () {
+            expect(times).toEqual(2);
+            expect(ret).toEqual(false);
+            done();
+        }, 200);
+    });
+
+
+    it('#size', function (done) {
+        var ee = new Events();
+
+        ee.on('a', function () {
+        });
+
+        ee.on('b', function () {
+        });
+        ee.on('b', function () {
+        });
+
+        expect(ee.size()).toEqual(3);
+        expect(ee.size('a')).toEqual(1);
+        expect(ee.size('b')).toEqual(2);
+        expect(ee.size('c')).toEqual(0);
+        ee.un('b');
+        expect(ee.size()).toEqual(1);
+        expect(ee.size('b')).toEqual(0);
+        done();
+    });
+
+    it('emit no listeners', function () {
+        var ee = new Events();
+        var times = 0;
+
+        ee.on('a', function () {
+            times++;
+        });
+
+        ee.on('b', function () {
+            times++;
+        });
+        var ret = ee.emit('a');
+        ee.un('a');
+
+        setTimeout(function () {
+            expect(times).toEqual(0);
+            expect(ret).toEqual(true);
+            done();
+        }, 200);
+    });
+
     it('#destroy', function (done) {
         var ee = new Events();
         var times = 0;
