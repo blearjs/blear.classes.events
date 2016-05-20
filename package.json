@@ -1,6 +1,6 @@
 {
   "name": "blear.classes.events",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "事件的派发类",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
