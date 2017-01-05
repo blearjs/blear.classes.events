@@ -6,9 +6,9 @@
 
 'use strict';
 
-var Class =  require('blear.classes.class');
+var Class = require('blear.classes.class');
 var typeis = require('blear.utils.typeis');
-var array =  require('blear.utils.array');
+var array = require('blear.utils.array');
 var object = require('blear.utils.object');
 var access = require('blear.utils.access');
 
@@ -200,19 +200,16 @@ pro[_removeEventListener] = function (ev, fn) {
  */
 pro[_emitEvent] = function (ev, args) {
     var the = this;
-    var listeners = the[_listeners][ev];
+    var listeners = the[_listeners][ev].slice();
     var emitResult = true;
 
     if (!listeners) {
         return emitResult;
     }
 
+    // 从数组上克隆下来，防止其他地方对原数组操作影响后续遍历
+    listeners = listeners.slice();
     array.each(listeners, function (index, listener) {
-        // 这种情况应该不会发生
-        // if (!listener) {
-        //     return;
-        // }
-
         // once listener
         if (listener[ONCE_TIME_LISTENER_KEY]) {
             listeners.splice(index, 1);
