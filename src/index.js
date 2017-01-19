@@ -25,7 +25,6 @@ var eachEvents = function (ev, fn) {
     array.map(evs, fn);
 };
 var defaults = {};
-var ONCE_TIME_LISTENER_KEY = '__classes/events.once__';
 
 var Events = Class.extend({
     className: 'Events',
@@ -64,8 +63,14 @@ var Events = Class.extend({
         var the = this;
 
         eachEvents(ev, function (_ev) {
-            fn[ONCE_TIME_LISTENER_KEY] = true;
-            the[_addEventListener](_ev, fn);
+            the[_addEventListener](_ev, function () {
+                if (!fn) {
+                    return;
+                }
+
+                fn.apply(this, arguments);
+                fn = null;
+            });
         });
 
         return the;
@@ -200,7 +205,7 @@ pro[_removeEventListener] = function (ev, fn) {
  */
 pro[_emitEvent] = function (ev, args) {
     var the = this;
-    var listeners = the[_listeners][ev].slice();
+    var listeners = the[_listeners][ev];
     var emitResult = true;
 
     if (!listeners) {
@@ -210,11 +215,6 @@ pro[_emitEvent] = function (ev, args) {
     // 从数组上克隆下来，防止其他地方对原数组操作影响后续遍历
     listeners = listeners.slice();
     array.each(listeners, function (index, listener) {
-        // once listener
-        if (listener[ONCE_TIME_LISTENER_KEY]) {
-            listeners.splice(index, 1);
-        }
-
         var _emitResult = listener.apply(the, args);
 
         if (_emitResult === false && emitResult === true) {
